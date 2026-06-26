@@ -1147,7 +1147,7 @@ class AscendSpecDecodeBaseProposer(SpecDecodeBaseProposer):
         )
         draft_token_ids_tensor[0] = draft_token_ids
         # If the request contains prefill and PREFILL_SKIP_MULTI_STEP is enabled, skip multi step
-        if envs.PREFILL_SKIP_MULTI_STEP and attn_metadata_i.num_prefills and self.runner.dp_size == 1:
+        if envs.PREFILL_SKIP_MULTI_STEP and is_prefill and self.runner.dp_size == 1:
             return draft_token_ids_tensor.swapaxes(0, 1)
         
         if self.uses_mrope:
